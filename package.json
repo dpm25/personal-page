@@ -1,0 +1,15 @@
+{
+  "name": "personal-page",
+  "version": "1.0.0",
+  "description": "personal page using node as backend, and basic HTML/CSS on the frontend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpm25/personal-page.git"
+  },
+  "author": "dan mahoney",
+  "license": "ISC"
+}
