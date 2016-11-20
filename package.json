@@ -11,5 +11,20 @@
     "url": "git+https://github.com/dpm25/personal-page.git"
   },
   "author": "dan mahoney",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  }
 }
