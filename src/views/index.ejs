@@ -12,7 +12,6 @@
 
     <!-- Custom styles for this template -->
     <link href="css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/icomoon.css">
     <link href="css/animate-custom.css" rel="stylesheet">
 
 
@@ -20,7 +19,6 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 
-    <script src="js/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="assets/js/modernizr.custom.js"></script> -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,9 +43,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#home" class="smoothScroll">Home</a></li>
-                        <li> <a href="#about" class="smoothScroll"> About</a></li>
-                        <li> <a href="#contact" class="smoothScroll"> Contact</a></li>
+                        <li><a id="header-nav" href="#header">Home</a></li>
+                        <li><a id="about-nav" href="#about"> About</a></li>
+                        <li><a id="contact-nav" href="#contact"> Contact</a></li>
+                    </ul>
                 </div>
                 <!--/.nav-collapse -->
             </div>
@@ -57,61 +56,32 @@
 
 
     <!-- ==== HEADERWRAP ==== -->
-    <div id="headerwrap" id="home" name="home">
+    <div id="headerwrap" name="home">
         <header class="clearfix">
             <h1><span class="icon icon-shield"></span></h1>
             <p>Welcome to My Page!</p>
-            <p>Exclusive for BlackTie.co.</p>
         </header>
     </div>
     <!-- /headerwrap -->
-
-    <!-- ==== GREYWRAP ==== -->
-    <div id="greywrap">
-        <div class="row">
-            <div class="col-lg-4 callout">
-                <span class="icon icon-stack"></span>
-                <h2>Bootstrap 3</h2>
-                <p>Shield Theme is powered by Bootstrap 3. The incredible Mobile First Framework is the best option to run your website. </p>
-            </div>
-            <!-- col-lg-4 -->
-
-            <div class="col-lg-4 callout">
-                <span class="icon icon-eye"></span>
-                <h2>Retina Ready</h2>
-                <p>You can use this theme with your iPhone, iPad or MacBook Pro. This theme is retina ready and that is awesome. </p>
-            </div>
-            <!-- col-lg-4 -->
-
-            <div class="col-lg-4 callout">
-                <span class="icon icon-heart"></span>
-                <h2>Crafted with Love</h2>
-                <p>We don't make sites, we craft themes with love & passion. That is our most valued secret. We only do thing that we love. </p>
-            </div>
-            <!-- col-lg-4 -->
-        </div>
-        <!-- row -->
-    </div>
-    <!-- greywrap -->
 
     <!-- ==== ABOUT ==== -->
     <div class="container" id="about" name="about">
         <div class="row white">
             <br>
-            <h1 class="centered">A LITTLE ABOUT OUR AGENCY</h1>
+            <h1 class="centered">A LITTLE ABOUT MYSELF</h1>
             <hr>
 
             <div class="col-lg-6">
-                <p>We believe ideas come from everyone, everywhere. In fact, at BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design
-                    craft. These truths drive us, motivate us, and ultimately help us redefine the power of design. We’re big believers in doing right by our neighbors. After all, we grew up in the Twin Cities and we believe this place has much to offer.
-                    So we do what we can to support the community we love.</p>
+                <p>Hello, welcome to my page! My name is Dan Mahoney I am a software enginner in D.C. metro area. I am a Pittsburgh native and I recently reloacted here. I graduated from the University of Pittsburgh with a Bachelor of Science degree in Computer
+                    Science. I consider myself a full stack engineer with experience throughout all levels of the tech stack. Most of my professional experience is creating java web applications using multiple frameworks (Spring Boot, Spring MVC, JAXB,
+                    JAX-RS, and JAX-WS) with various front and backend technologies (Please see my resume).</p>
             </div>
             <!-- col-lg-6 -->
 
             <div class="col-lg-6">
-                <p>Over the past four years, we’ve provided more than $1 million in combined cash and pro bono support to Way to Grow, an early childhood education and nonprofit organization. Other community giving involvement throughout our agency history
-                    includes pro bono work for more than 13 organizations, direct giving, a scholarship program through the Minneapolis College of Art & Design, board memberships, and ongoing participation in the Keystone Club, which gives five percent
-                    of our company’s earnings back to the community each year.</p>
+                <p>Although java is the primary language in my professional life I do enjoy using/learning skills. Most recently I have started to focus more on my front end skills. In particular Node.js and ES6 JavaScript. Additionally I have been tinkering
+                    with AWS, and that is what I am using to host this site! On a personal note my fiancé and I recently adopted a brown tabby cat named Jeff. This is my first cat, and in my childhood I grew up with dogs. I think its time dog people start
+                    giving cats a chance. They are really awesome!</p>
             </div>
             <!-- col-lg-6 -->
         </div>
@@ -119,12 +89,38 @@
     </div>
     <!-- container -->
 
+    <!-- ==== GREYWRAP ==== -->
+    <div id="greywrap">
+        <div class="row">
+            <div class="col-lg-4 callout">
+                <span class="icon icon-stack"></span>
+                <h2>Sentence Generator</h2>
+                <p>Future description about sentence generator module. </p>
+            </div>
+            <!-- col-lg-4 -->
+
+            <div class="col-lg-4 callout">
+                <span class="icon icon-eye"></span>
+                <h2>World Domain Map</h2>
+                <p>Future description about the world domain extension map. </p>
+            </div>
+            <!-- col-lg-4 -->
+
+            <div class="col-lg-4 callout">
+                <span class="icon icon-heart"></span>
+                <h2>Undecided</h2>
+                <p>Future desctiprtion of something cool. </p>
+            </div>
+            <!-- col-lg-4 -->
+        </div>
+        <!-- row -->
+    </div>
+    <!-- greywrap -->
+
     <!-- ==== SECTION DIVIDER1 -->
     <section class="section-divider textdivider divider1">
         <div class="container">
-            <h1>DESIGN EXPAND BOUNDARIES</h1>
-            <hr>
-            <p>To achieve real change, we have to expand boundaries. Because the Wild West of what-could-be is unexplored but rife with opportunity.</p>
+
         </div>
         <!-- container -->
     </section>
@@ -133,54 +129,53 @@
     <div class="container" id="contact" name="contact">
         <div class="row">
             <br>
-            <h1 class="centered">THANKS FOR VISITING US</h1>
+            <h1 class="centered">THANKS FOR VISITING ME</h1>
             <hr>
             <br>
             <br>
             <div class="col-lg-4">
                 <h3>Contact Information</h3>
-                <p><span class="icon icon-home"></span> Some Address 987, NY<br/>
-                    <span class="icon icon-phone"></span> +34 9884 4893 <br/>
-                    <span class="icon icon-mobile"></span> +34 59855 9853 <br/>
-                    <span class="icon icon-envelop"></span> <a href="#"> agency@blacktie.co</a> <br/>
-                    <span class="icon icon-twitter"></span> <a href="#"> @blacktie_co </a> <br/>
-                    <span class="icon icon-facebook"></span> <a href="#"> BlackTie Agency </a> <br/>
+                <p> <span class="icon icon-twitter"></span> <a href="https://www.linkedin.com/in/daniel-mahoney-a53222a2?trk=hp-identity-name" target="_blank"> @linkedin</a> <br/>
+                    <span class="icon icon-facebook"></span> <a href="https://github.com/dpm25" target="_blank"> @github </a> <br/>
                 </p>
             </div>
             <!-- col -->
 
             <div class="col-lg-4">
-                <h3>Newsletter</h3>
-                <p>Register to our newsletter and be updated with the latests information regarding our services, offers and much more.</p>
+                <h3>Email Me</h3>
+                <p>Feel free to contact me regarding job opportunities, tech meet ups, or any other professional matter! Nothing is hooked up yet though.</p>
+            </div>
+            <!-- col -->
+
+            <div class="col-lg-4">
                 <p>
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="inputEmail1" class="col-lg-4 control-label"></label>
-                            <div class="col-lg-10">
-                                <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="text1" class="col-lg-4 control-label"></label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" id="text1" placeholder="Your Name">
+                                <input type="text" class="form-control" id="text1" placeholder="your name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail1" class="col-lg-4 control-label"></label>
+                            <div class="col-lg-10">
+                                <input type="email" class="form-control" id="inputEmail1" placeholder="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment" class="col-lg-4 control-label"></label>
+                            <div class="col-lg-10">
+                                <textarea type="text" class="form-control" rows="5" id="comment" placeholder="comments"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-10">
-                                <button type="submit" class="btn btn-success">Sign in</button>
+                                <button type="submit" class="btn btn-success">send</button>
                             </div>
                         </div>
                     </form>
                     <!-- form -->
                 </p>
-            </div>
-            <!-- col -->
-
-            <div class="col-lg-4">
-                <h3>Support Us</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book.</p>
             </div>
             <!-- col -->
 
@@ -200,12 +195,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/retina.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/smoothscroll.js"></script>
-    <script type="text/javascript" src="js/jquery-func.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/lib/retina.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
