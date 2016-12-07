@@ -43,9 +43,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a id="header-nav" href="#header">Home</a></li>
-                        <li><a id="about-nav" href="#about"> About</a></li>
-                        <li><a id="contact-nav" href="#contact"> Contact</a></li>
+                        <% for(var i=0; i<nav.length; i++) {%>
+                            <li>
+                                <a id="<%=nav[i].id%>" href="<%=nav[i].href%>">
+                                    <%=nav[i].title%>
+                                </a>
+                            </li>
+                            <%}%>
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -72,14 +76,14 @@
             <hr>
 
             <div class="col-lg-6">
-                <p>Hello, welcome to my page! My name is Dan Mahoney I am a software enginner in D.C. metro area. I am a Pittsburgh native and I recently reloacted here. I graduated from the University of Pittsburgh with a Bachelor of Science degree in Computer
-                    Science. I consider myself a full stack engineer with experience throughout all levels of the tech stack. Most of my professional experience is creating java web applications using multiple frameworks (Spring Boot, Spring MVC, JAXB,
-                    JAX-RS, and JAX-WS) with various front and backend technologies (Please see my resume).</p>
+                <p>Hello, welcome to my page! My name is Dan Mahoney I am a software enginner in D.C. metro area. I am a Pittsburgh native, and I recently reloacted here. I graduated from the University of Pittsburgh with a Bachelor of Science degree in
+                    Computer Science. I consider myself a full stack engineer with experience throughout all levels of the tech stack. Most of my professional experience is creating java web applications using multiple frameworks (Spring Boot, Spring
+                    MVC, JAXB, JAX-RS, and JAX-WS) with various front and backend technologies (Please see my resume link above).</p>
             </div>
             <!-- col-lg-6 -->
 
             <div class="col-lg-6">
-                <p>Although java is the primary language in my professional life I do enjoy using/learning skills. Most recently I have started to focus more on my front end skills. In particular Node.js and ES6 JavaScript. Additionally I have been tinkering
+                <p>Although java is the primary language in my professional life I do enjoy using/learning new skills. Most recently I have started to focus more on my front end skills. In particular Node.js and ES6 JavaScript. Additionally I have been tinkering
                     with AWS, and that is what I am using to host this site! On a personal note my fiancé and I recently adopted a brown tabby cat named Jeff. This is my first cat, and in my childhood I grew up with dogs. I think its time dog people start
                     giving cats a chance. They are really awesome!</p>
             </div>
@@ -143,7 +147,7 @@
 
             <div class="col-lg-4">
                 <h3>Email Me</h3>
-                <p>Feel free to contact me regarding job opportunities, tech meet ups, or any other professional matter! Nothing is hooked up yet though.</p>
+                <p>Feel free to contact me regarding job opportunities, tech meet ups, or any other professional matter! Nothing is hooked up yet though so the email will not send!</p>
             </div>
             <!-- col -->
 
@@ -194,7 +198,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-
     <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/lib/retina.js"></script>
     <script type="text/javascript" src="js/index.js"></script>

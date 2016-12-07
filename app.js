@@ -7,17 +7,37 @@ var bodyParser = require('body-parser');
 
 // set the static lib
 app.use(express.static('assets'));
+app.use(express.static('node_modules/datamaps/dist/'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+ 
 // set view engine and path to views
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
+var nav = [{
+    "id": "header-nav",
+    "href": "#header",
+    "title": "Home"
+}, {
+    "id": "about-nav",
+    "href": "#about",
+    "title": "About"
+}, {
+    "id": "contact-nav",
+    "href": "#contact",
+    "title": "Contact"
+}];
+
+var countryRouter = require('./src/routes/countryRouter')(nav);
+app.use('/country-widget', countryRouter);
+
 app.get('/', function(req, res) {
-    res.render('index');
+    res.render('index', {
+        nav: nav
+    });
 });
 
 // set PORT to env or default to 3000
