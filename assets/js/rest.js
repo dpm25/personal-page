@@ -49,6 +49,4 @@ var RestModule = function() {
     }
 };
 
-export {
-    RestModule
-};
+export { RestModule };

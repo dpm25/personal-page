@@ -27,7 +27,7 @@ import { RestModule } from './rest'
                 console.log('successful fetch!');
                 var hoverinfo = document.getElementsByClassName('hoverinfo')[0];
                 console.log(hoverinfo);
-                hoverinfo.innerHTML = '<stong>Country: </strong>' + response.name + '<br/>' + '<stong>Domain: </strong>' + response.topLevelDomain[0];
+                hoverinfo.innerHTML = '<strong>Country: </strong>' + response.name + '<br/>' + '<strong>Domain: </strong>' + response.topLevelDomain[0];
               }
             });
         });
