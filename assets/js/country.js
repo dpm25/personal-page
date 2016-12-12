@@ -6,7 +6,7 @@ import { RestModule } from './rest'
         projection: 'mercator',
         geographyConfig: {
             popupTemplate: function(e) {
-                return '<div class="hoverinfo" style="width:150px; height:100px;"><stong>Country: </strong><br/><stong>Domain: </strong></div>';
+                return '<div class="hoverinfo" style="width:150px; height:100px;"></div>';
             }
         }
     });
@@ -24,10 +24,10 @@ import { RestModule } from './rest'
               if (err) {
                 console.log('Error fetching data from rest countries!');
               } else {
-                console.log('successful fetch!');
                 var hoverinfo = document.getElementsByClassName('hoverinfo')[0];
-                console.log(hoverinfo);
-                hoverinfo.innerHTML = '<strong>Country: </strong>' + response.name + '<br/>' + '<strong>Domain: </strong>' + response.topLevelDomain[0];
+                hoverinfo.innerHTML = '<strong>Country: </strong>' + response.name + '<br/>' +
+                                      '<strong>Domains: </strong>' + response.topLevelDomains + '<br/>' +
+                                      '<strong>Calling Codes: </strong>' + response.callingCodes;
               }
             });
         });

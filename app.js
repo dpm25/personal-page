@@ -4,6 +4,8 @@ var express = require('express');
 var app = module.exports = express();
 // body-parser
 var bodyParser = require('body-parser');
+// node mailer library
+var nodemailer = require('nodemailer');
 
 // set the static lib
 app.use(express.static('assets'));
@@ -12,22 +14,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
- 
+
 // set view engine and path to views
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 var nav = [{
     "id": "header-nav",
-    "href": "#header",
+    "href": "/#header",
     "title": "Home"
 }, {
     "id": "about-nav",
-    "href": "#about",
+    "href": "/#about",
     "title": "About"
 }, {
     "id": "contact-nav",
-    "href": "#contact",
+    "href": "/#contact",
     "title": "Contact"
 }];
 
@@ -38,6 +40,11 @@ app.get('/', function(req, res) {
     res.render('index', {
         nav: nav
     });
+});
+
+app.post('/mailme', function(req, res) {
+    console.log('name: ' + req.body.name + ' email: ' + req.body.inputEmail + ' comment: ' + req.body.comment);
+    res.redirect(301, '/');
 });
 
 // set PORT to env or default to 3000

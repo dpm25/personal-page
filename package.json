@@ -18,7 +18,8 @@
     "datamaps": "^0.5.8",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
-    "express-session": "^1.14.2"
+    "express-session": "^1.14.2",
+    "nodemailer": "^2.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

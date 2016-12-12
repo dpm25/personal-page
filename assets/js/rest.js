@@ -15,7 +15,8 @@ var RestModule = function() {
                 var parsedJSON = JSON.parse(request.responseText);
                 var jsonFetch = {
                   'name': getByKey(parsedJSON, 'name'),
-                  'topLevelDomain': getByKey(parsedJSON, 'topLevelDomain')
+                  'topLevelDomains': getByKey(parsedJSON, 'topLevelDomain'),
+                  'callingCodes': getByKey(parsedJSON, 'callingCodes')
                 }
                 callback(null, jsonFetch);
             } else {
@@ -40,6 +41,14 @@ var RestModule = function() {
                 found = obj[key];
                 break;
             }
+        }
+
+        if (Array.isArray(found)) {
+          var tempFound = '';
+          for (var i = 0; i < found.length; i++) {
+              tempFound += found[i] + ', ';
+          }
+          found = tempFound.slice(0, -2);
         }
         return found;
     }
