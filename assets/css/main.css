@@ -416,23 +416,6 @@ a:after {
 	background-image: url('../img/skyline.jpg')
 }
 
-/*.divider2 {
-	background-image: url('../img/bg/divider2.jpg')
-}
-
-.divider3 {
-	background-image: url('../img/bg/divider3.jpg');
-	margin-top: 0px;
-}
-
-.divider4 {
-	background-image: url('../img/bg/divider4.jpg')
-}
-
-.divider6 {
-	background-image: url('../img/bg/divider6.jpg')
-}*/
-
 
 
 /* ==========================================================================
@@ -582,34 +565,6 @@ a:after {
 	bottom: 10px;
 	right: 30px;
 }
-
-
-/* ==========================================================================
-   Blog Section
-   ========================================================================== */
-
-.blog-bg {
-	background: #2b2b2b;
-	padding-right: 0px;
-	padding-left: 0px;
-
-}
-
-.blog-bg h4 {
-	color: #dadada;
-	padding-top: 0px;
-}
-
-.blog-bg h5 {
-	color: #dadada;
-	font-size: 11px;
-}
-
-.blog-content {
-	padding-top: 10px;
-	background: #f2f2f2;
-}
-
 
 /* ==========================================================================
    MEDIA QUERIES

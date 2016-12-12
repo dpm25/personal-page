@@ -3,7 +3,7 @@ var countryRouter = express.Router();
 
 var router = function(nav) {
     countryRouter.route('/')
-        .get(function(req, res) { 
+        .get(function(req, res) {
             res.render('country-widget', {
                 nav: nav
             })

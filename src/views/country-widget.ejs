@@ -1,76 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
+<% include header %>
 
-    <title>Dan Mahoney</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/country.css" rel="stylesheet">
-    <link href="css/animate-custom.css" rel="stylesheet">
-
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+    <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
 
 
-    <div id="navbar-main">
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <div id="navbar-main">
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
           </button>
-                    <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
+                        <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <% for(var i=0; i<nav.length; i++) {%>
+                                <li>
+                                    <a id="<%=nav[i].id%>" href="<%=nav[i].href%>">
+                                        <%=nav[i].title%>
+                                    </a>
+                                </li>
+                                <%}%>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <% for(var i=0; i<nav.length; i++) {%>
-                            <li>
-                                <a id="<%=nav[i].id%>" href="<%=nav[i].href%>">
-                                    <%=nav[i].title%>
-                                </a>
-                            </li>
-                            <%}%>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
             </div>
         </div>
-    </div>
 
-    <div id="map-container" class="container">
-
-    </div>
-
-    <div id="footerwrap">
-        <div class="container">
-            <h4>Created by Dan Mahoney -- 1016 </h4>
+        <div id="map-view" class="container">
+            <!-- MAP will be placed here by datamaps.world.js -->
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript
+        <% include footer %>
+
+            <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-    <script src="datamaps.world.min.js"></script>
-    <script type="text/javascript" src="/build/country-bundle.js"></script>
-</body>
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+            <script src="datamaps.world.min.js"></script>
+            <script type="text/javascript" src="/build/country-bundle.js"></script>
+    </body>
 
 </html>
