@@ -12,13 +12,7 @@ var RestModule = function() {
             var json = {};
             if (request.status >= 200 && request.status < 400) {
                 // Success!
-                var parsedJSON = JSON.parse(request.responseText);
-                var jsonFetch = {
-                  'name': getByKey(parsedJSON, 'name'),
-                  'topLevelDomains': getByKey(parsedJSON, 'topLevelDomain'),
-                  'callingCodes': getByKey(parsedJSON, 'callingCodes')
-                }
-                callback(null, jsonFetch);
+                callback(null, request.responseText);
             } else {
               callback('Error occured reaching server', null);
             }
@@ -54,7 +48,8 @@ var RestModule = function() {
     }
 
     return {
-        rest: rest
+        rest: rest,
+        getByKey: getByKey
     }
 };
 

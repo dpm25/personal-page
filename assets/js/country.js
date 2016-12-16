@@ -20,14 +20,23 @@ import { RestModule } from './rest'
             e.stopPropagation();
             var countryCode = e.target.className.baseVal.split(" ")[1];
             var restModule = new RestModule();
-            restModule.rest('GET', 'https://restcountries.eu/rest/v1/alpha?codes=' + countryCode, null, function(err, response) {
+            restModule.rest('GET', 'https://restcountries.eu/rest/v1/alpha?codes=' + countryCode, null, (err, response) =>  {
+              var hoverinfo = document.getElementsByClassName('hoverinfo')[0];
+
               if (err) {
                 console.log('Error fetching data from rest countries!');
+                hoverinfo.innerHTML = '<strong>Oops...error fetching data from rest countries! </strong>';
               } else {
-                var hoverinfo = document.getElementsByClassName('hoverinfo')[0];
-                hoverinfo.innerHTML = '<strong>Country: </strong>' + response.name + '<br/>' +
-                                      '<strong>Domains: </strong>' + response.topLevelDomains + '<br/>' +
-                                      '<strong>Calling Codes: </strong>' + response.callingCodes;
+                var parsedJSON = JSON.parse(response);
+
+                var jsonFetch = {
+                  'name': restModule.getByKey(parsedJSON, 'name'),
+                  'topLevelDomains': restModule.getByKey(parsedJSON, 'topLevelDomain'),
+                  'callingCodes': restModule.getByKey(parsedJSON, 'callingCodes')
+                }
+                hoverinfo.innerHTML = '<strong>Country: </strong>' + jsonFetch.name + '<br/>' +
+                                      '<strong>Domains: </strong>' + jsonFetch.topLevelDomains + '<br/>' +
+                                      '<strong>Calling Codes: </strong>' + jsonFetch.callingCodes;
               }
             });
         });
