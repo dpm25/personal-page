@@ -6,45 +6,21 @@
     <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
 
 
-        <div id="navbar-main">
-            <!-- Fixed navbar -->
-            <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
-          </button>
-                        <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <% for(var i=0; i<nav.length; i++) {%>
-                                <li>
-                                    <a id="<%=nav[i].id%>" href="<%=nav[i].href%>">
-                                        <%=nav[i].title%>
-                                    </a>
-                                </li>
-                                <%}%>
-                        </ul>
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-            </div>
-        </div>
+        <% include nav %>
 
         <div id="map-view" class="container">
-            <!-- MAP will be placed here by datamaps.world.js -->
+        <!-- MAP will be placed here by datamaps.world.js -->
         </div>
 
         <% include footer %>
 
-            <!-- Bootstrap core JavaScript
-    ================================================== -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-            <script src="datamaps.world.min.js"></script>
-            <script type="text/javascript" src="/build/country-bundle.js"></script>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+        <script src="datamaps.world.min.js"></script>
+        <script type="text/javascript" src="/build/country-bundle.js"></script>
     </body>
 
 </html>

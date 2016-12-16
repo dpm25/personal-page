@@ -20,10 +20,6 @@ app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
 var nav = [{
-    "id": "header-nav",
-    "href": "/#header",
-    "title": "Home"
-}, {
     "id": "about-nav",
     "href": "/#about",
     "title": "About"
