@@ -1,17 +1,4 @@
-function ready(fn) {
-    if (document.readyState != 'loading') {
-        fn();
-    } else if (document.addEventListener) {
-        document.addEventListener('DOMContentLoaded', fn);
-    } else {
-        document.attachEvent('onreadystatechange', function() {
-            if (document.readyState != 'loading')
-                fn();
-        });
-    }
-}
-
-function scrollMe() {
+$( document ).ready(function scrollMe() {
     $("#header-nav").click(function() {
         $('html,body').animate({
                 scrollTop: $("#navbar-main").offset().top
@@ -32,6 +19,4 @@ function scrollMe() {
             },
             'slow');
     });
-}
-
-ready(scrollMe);
+});
