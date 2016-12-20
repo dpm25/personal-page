@@ -33,9 +33,10 @@ function scrollMe() {
 
 ready(scrollMe);
 
-let el = document.getElementById("contact-form");
-el.addEventListener("submit", (e) => {
-    e.preventDefault();
+document.getElementById("contact-form").addEventListener("submit", (e) => {
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
 
     let email = document.getElementById('inputEmail').value;
     let comment = document.getElementById('comment').value;
@@ -44,11 +45,14 @@ el.addEventListener("submit", (e) => {
     console.log(params);
     let restModule = new RestModule();
     restModule.rest('POST', '/mailme', params, (err, response) => {
+        let el = document.getElementById('email-response-message');
+        let contactForm = document.getElementById("contact-form");
+        contactForm.reset();
         if (err) {
-            console.log(err);
+            el.innerHTML = '<p><b>Oh no...something went wrong.</b></p>'
         } else {
             console.log('success');
-            el.outerHTML = 'Got it...'
+            el.innerHTML = '<p><b>Got it...Thanks for reaching out!</b></p>'
         }
     });
 });
