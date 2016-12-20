@@ -51,10 +51,10 @@ app.post('/mailme', function(req, res) {
         // setup e-mail data with unicode symbols
         var mailOptions = {
             from: '"Dan Mahoney" <dan.mahoney.development@gmail.com>', // sender address
-            to: 'dan.mahoney.development@gmail.com', // list of receivers
-            subject: 'Website Message From: ' + req.body.inputEmail, // Subject line
-            //text: req.body.comment, // plaintext body
-            html: mailUtil.safeTagReplace(req.body.comment) // html body
+            to: req.body.inputEmail, // list of receivers
+            subject: 'Thanks For Reaching Out!!!', // Subject line
+            text: 'I will be sure to respond to your inquiry as soon as I can...Thanks again!', // plaintext body
+            html: '<H3>I will be sure to respond to your inquiry as soon as I can...Thanks again!<H3>' // html body
         };
 
         // send the email and handle teh response in callback
