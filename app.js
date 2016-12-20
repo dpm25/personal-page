@@ -46,7 +46,6 @@ app.post('/mailme', function(req, res) {
     // validate the email address and prepare to send the email
     if (mailUtil.validateEmail(req.body.inputEmail)) {
         // create reusable transporter object using the default SMTP transport
-        //var transporter = nodemailer.createTransport('smtps://dan.mahoney.development%40gmail.com:p!ttp%40nth3r@smtp.gmail.com');
         var transporter = nodemailer.createTransport('smtps://' + process.env.EMAIL + ':' + process.env.PASS + '@smtp.gmail.com');
 
         // setup e-mail data with unicode symbols
