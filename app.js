@@ -4,8 +4,10 @@ var express = require('express');
 var app = module.exports = express();
 // body-parser
 var bodyParser = require('body-parser');
-// node mailer library
+// node mailer
 var nodemailer = require('nodemailer');
+// mail util
+var mailUtil = require('./src/utils/mailUtil');
 
 // set the static lib
 app.use(express.static('assets'));
@@ -29,6 +31,7 @@ var nav = [{
     "title": "Contact"
 }];
 
+// set up country wideget router for all requests to path /country-widget
 var countryRouter = require('./src/routes/countryRouter')(nav);
 app.use('/country-widget', countryRouter);
 
@@ -38,9 +41,35 @@ app.get('/', function(req, res) {
     });
 });
 
+// post an email to account
 app.post('/mailme', function(req, res) {
-    console.log('name: ' + req.body.name + ' email: ' + req.body.inputEmail + ' comment: ' + req.body.comment);
-    res.redirect(301, '/');
+    // validate the email address and prepare to send the email
+    if (mailUtil.validateEmail(req.body.inputEmail)) {
+        // create reusable transporter object using the default SMTP transport
+        //var transporter = nodemailer.createTransport('smtps://dan.mahoney.development%40gmail.com:p!ttp%40nth3r@smtp.gmail.com');
+        var transporter = nodemailer.createTransport('smtps://' + process.env.EMAIL + ':' + process.env.PASS + '@smtp.gmail.com');
+
+        // setup e-mail data with unicode symbols
+        var mailOptions = {
+            from: '"Dan Mahoney" <dan.mahoney.development@gmail.com>', // sender address
+            to: 'dan.mahoney.development@gmail.com', // list of receivers
+            subject: 'Website Message From: ' + req.body.inputEmail, // Subject line
+            //text: req.body.comment, // plaintext body
+            html: mailUtil.safeTagReplace(req.body.comment) // html body
+        };
+
+        // send the email and handle teh response in callback
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('successful email');
+        });
+
+        res.redirect(301, '/');
+    } else {
+        console.log('invaild email!');
+    }
 });
 
 // set PORT to env or default to 3000
