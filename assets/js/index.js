@@ -49,9 +49,10 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
         let contactForm = document.getElementById("contact-form");
         contactForm.reset();
         if (err) {
+            console.log('failed to send!');
             el.innerHTML = '<p><b>Oh no...something went wrong.</b></p>'
         } else {
-            console.log('success');
+            console.log('successfully sent!');
             el.innerHTML = '<p><b>Got it...Thanks for reaching out!</b></p>'
         }
     });

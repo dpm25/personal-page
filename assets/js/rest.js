@@ -8,7 +8,6 @@ var RestModule = function() {
         request.open(method, url);
 
         if (method == 'POST') {
-          console.log('setting header application/x-www-form-urlencoded');
           request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         }
 
