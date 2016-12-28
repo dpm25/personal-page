@@ -1,13 +1,11 @@
 // import express module
-var express = require('express');
+let express = require('express');
 // make express module global
-var app = module.exports = express();
+let app = module.exports = express();
 // body-parser
-var bodyParser = require('body-parser');
-// node mailer
-var nodemailer = require('nodemailer');
+let bodyParser = require('body-parser');
 // mail util
-var mailUtil = require('./src/utils/mailUtil');
+const mailUtil = require('./src/utils/mailUtil');
 
 // set the static lib
 app.use(express.static('assets'));
@@ -43,32 +41,16 @@ app.get('/', function(req, res) {
 
 // post an email to account
 app.post('/mailme', function(req, res) {
-    // validate the email address and prepare to send the email
-    if (mailUtil.validateEmail(req.body.inputEmail)) {
-        // create reusable transporter object using the default SMTP transport
-        var transporter = nodemailer.createTransport('smtps://' + process.env.EMAIL + ':' + process.env.PASS + '@smtp.gmail.com');
-
-        // setup e-mail data with unicode symbols
-        var mailOptions = {
-            from: '"Dan Mahoney" <dan.mahoney.development@gmail.com>', // sender address
-            to: req.body.inputEmail, // list of receivers
-            subject: 'Thanks For Reaching Out!!!', // Subject line
-            text: 'I will be sure to respond to your inquiry as soon as I can...Thanks again!', // plaintext body
-            html: '<H3>I will be sure to respond to your inquiry as soon as I can...Thanks again!<H3>' // html body
-        };
-
-        // send the email and handle teh response in callback
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return console.log(error);
-            }
-            console.log('successful email');
-        });
-
-        res.redirect(301, '/');
-    } else {
-        console.log('invaild email!');
-    }
+    // use mailUtil to send email and post data to dynamodb 
+    mailUtil.mailme(req.body.inputEmail, req.body.comment, (err, response) => {
+        if (err) {
+            console.log(err);
+            res.redirect(400, '/');
+        } else {
+            console.log(response);
+            res.redirect(200, '/');
+        }
+    });
 });
 
 // set PORT to env or default to 3000
