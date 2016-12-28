@@ -1,11 +1,11 @@
 // import express module
-var express = require('express');
+let express = require('express');
 // make express module global
-var app = module.exports = express();
+let app = module.exports = express();
 // body-parser
-var bodyParser = require('body-parser');
-// node mailer library
-var nodemailer = require('nodemailer');
+let bodyParser = require('body-parser');
+// mail util
+const mailUtil = require('./src/utils/mailUtil');
 
 // set the static lib
 app.use(express.static('assets'));
@@ -29,6 +29,7 @@ var nav = [{
     "title": "Contact"
 }];
 
+// set up country wideget router for all requests to path /country-widget
 var countryRouter = require('./src/routes/countryRouter')(nav);
 app.use('/country-widget', countryRouter);
 
@@ -38,9 +39,18 @@ app.get('/', function(req, res) {
     });
 });
 
+// post an email to account
 app.post('/mailme', function(req, res) {
-    console.log('name: ' + req.body.name + ' email: ' + req.body.inputEmail + ' comment: ' + req.body.comment);
-    res.redirect(301, '/');
+    // use mailUtil to send email and post data to dynamodb 
+    mailUtil.mailme(req.body.inputEmail, req.body.comment, (err, response) => {
+        if (err) {
+            console.log(err);
+            res.redirect(400, '/');
+        } else {
+            console.log(response);
+            res.redirect(200, '/');
+        }
+    });
 });
 
 // set PORT to env or default to 3000

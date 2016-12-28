@@ -7,6 +7,10 @@ var RestModule = function() {
         var request = new XMLHttpRequest();
         request.open(method, url);
 
+        if (method == 'POST') {
+          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        }
+
         // handling request onload
         request.onload = function onload() {
             var json = {};

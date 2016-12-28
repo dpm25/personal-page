@@ -96,19 +96,19 @@
 
                 <div class="col-lg-4">
                     <h3>Email Me</h3>
-                    <p>Feel free to contact me regarding job opportunities, tech meet ups, or any other professional matter! Nothing is hooked up yet though so the email will not send!</p>
+                    <p>Feel free to contact me regarding job opportunities, tech meet ups, or any other professional matter. Don't worry I won't spam you!</p>
                 </div>
                 <!-- col -->
 
                 <div class="col-lg-4">
                     <p>
-                        <form class="form-horizontal" role="form" method="post" action="mailme">
-                            <div class="form-group">
+                        <form id="contact-form" class="form-horizontal" role="form">
+                            <!-- <div class="form-group">
                                 <label for="name" class="col-lg-4 control-label"></label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="name" name="name" placeholder=" your name">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="inputEmail" class="col-lg-4 control-label"></label>
                                 <div class="col-lg-10">
@@ -128,13 +128,14 @@
                             </div>
                         </form>
                         <!-- form -->
+                        <div id="email-response-message">
+                        </div>
                     </p>
                 </div>
                 <!-- col -->
 
             </div>
             <!-- row -->
-
         </div>
         <!-- container -->
 
@@ -142,7 +143,7 @@
 
         <!-- custom js for index page -->
         <!-- ================================================== -->
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="/build/index-bundle.js"></script>
     </body>
 
 </html>
