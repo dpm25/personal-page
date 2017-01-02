@@ -1,11 +1,13 @@
-import { RestModule } from './rest'
+import {
+    RestModule
+} from './rest'
 
 function ready(fn) {
-  if (document.readyState != 'loading'){
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
+    if (document.readyState != 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
 }
 
 function scrollMe() {
@@ -49,11 +51,12 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
         let contactForm = document.getElementById("contact-form");
         contactForm.reset();
         if (err) {
-            console.log('failed to send!');
-            el.innerHTML = '<p><b>Oh no...something went wrong.</b></p>'
+            el.innerHTML = '<p><b>Oh no...something went wrong.</b></p>';
+        } else if (response.includes('Accepted')) { // hack: using 202 response code to say email was accepted but already exists in datastore
+            el.innerHTML = '<p><b>Looks like you have already submitted your email!</b></p>';
         } else {
-            console.log('successfully sent!');
-            el.innerHTML = '<p><b>Got it...Thanks for reaching out!</b></p>'
+            console.log(response);
+            el.innerHTML = '<p><b>Got it...Thanks for reaching out!</b></p>';
         }
     });
 });
