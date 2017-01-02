@@ -41,14 +41,18 @@ app.get('/', function(req, res) {
 
 // post an email to account
 app.post('/mailme', function(req, res) {
-    // use mailUtil to send email and post data to dynamodb 
+    // use mailUtil to send email and post data to dynamodb
     mailUtil.mailme(req.body.inputEmail, req.body.comment, (err, response) => {
+        console.log(err);
         if (err) {
-            console.log(err);
-            res.redirect(400, '/');
+            console.log(err); // an error occurred
+            res.sendStatus(500);
+        } else if (response === 'EMAIL_EXISTS') {
+            console.log('email exists!');
+            res.sendStatus(202);
         } else {
             console.log(response);
-            res.redirect(200, '/');
+            res.sendStatus(200)
         }
     });
 });
