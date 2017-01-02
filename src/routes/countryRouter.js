@@ -8,7 +8,6 @@ var router = function(nav) {
                 nav: nav
             })
         });
-
       return countryRouter;
 }
 

@@ -9,6 +9,17 @@ module.exports = {
     // export the anonymous mailme function
     mailme: function(email, comment, callback) {
         if (validate(email)) {
+
+            // attempt to put email and comment into dynamoDB
+            DynamoStore.putItem('contacts', {
+                email: email,
+                comment: comment
+            }, (err, response) => {
+                if (err) {
+                    return callback(err, response);
+                }
+            });
+
             // create reusable transporter object using the default SMTP transport
             let transporter = nodemailer.createTransport(sesTransport({
                 accessKeyId: process.env.KEY,
@@ -19,25 +30,15 @@ module.exports = {
             // setup e-mail data with unicode symbols
             let mailOptions = {
                 from: '"Dan Mahoney" <dan.mahoney.development@gmail.com>', // sender address
-                to: email, // list of receivers
-                subject: 'Thanks For Reaching Out!!!', // Subject line
-                text: 'I will be sure to respond to your inquiry as soon as I can...Thanks again!', // plaintext body
-                html: '<h3>I will be sure to respond to your inquiry as soon as I can...Thanks again!</h3>' // html body
+                to: 'dan.mahoney.development@gmail.com', // list of receivers
+                subject: 'WEBSITE: ' + email, // Subject line
+                text: comment, // plaintext body
+                html: '<h3>' + comment + '</h3>' // html body
             };
 
             // send the email and handle teh response in callback
             transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    callback(error, info);
-                } else {
-                    console.log(info);
-                    DynamoStore.putItem('contacts', {
-                        email: email,
-                        comment: comment
-                    }, (err, response) => {
-                        callback(err, response);
-                    });
-                }
+                return callback(error, info);
             });
         } else {
             console.log('invaild email!');
