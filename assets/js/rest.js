@@ -1,10 +1,9 @@
 var RestModule = function() {
-    //console.log('Inside the RestModule!');
 
     function rest(method, url, params, callback) {
 
         // Opening request
-        var request = new XMLHttpRequest();
+        let request = new XMLHttpRequest();
         request.open(method, url);
 
         if (method == 'POST') {
@@ -13,7 +12,7 @@ var RestModule = function() {
 
         // handling request onload
         request.onload = function onload() {
-            var json = {};
+            let json = {};
             if (request.status >= 200 && request.status < 400) {
                 // Success!
                 callback(null, request.responseText);
@@ -32,9 +31,9 @@ var RestModule = function() {
     };
 
     function getByKey(json, key) {
-        var found;
-        for (var i = 0; i < json.length; i++) {
-            var obj = json[i];
+        let found;
+        for (let i = 0; i < json.length; i++) {
+            let obj = json[i];
             if (obj[key] !== null) {
                 found = obj[key];
                 break;
@@ -42,8 +41,8 @@ var RestModule = function() {
         }
 
         if (Array.isArray(found)) {
-          var tempFound = '';
-          for (var i = 0; i < found.length; i++) {
+          let tempFound = '';
+          for (let i = 0; i < found.length; i++) {
               tempFound += found[i] + ', ';
           }
           found = tempFound.slice(0, -2);

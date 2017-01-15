@@ -42,24 +42,25 @@ app.get('/', function(req, res) {
 // post an email to account
 app.post('/mailme', function(req, res) {
     // use mailUtil to send email and post data to dynamodb
+    console.log('host: ' + req.headers.host);
     mailUtil.mailme(req.body.inputEmail, req.body.comment, (err, response) => {
         console.log(err);
         if (err) {
             console.log(err); // an error occurred
-            res.sendStatus(500);
+            res.redirect(500, '/');
         } else if (response === 'EMAIL_EXISTS') {
             console.log('email exists!');
-            res.sendStatus(202);
+            res.redirect(202, '/');
         } else {
             console.log(response);
-            res.sendStatus(200)
+            res.redirect(200, '/');
         }
     });
 });
 
 // set PORT to env or default to 3000
 // and set app to list on that port
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 app.listen(port, function() {
     console.log('runnning server on port: ' + port);
 });

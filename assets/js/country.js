@@ -1,7 +1,7 @@
 import { RestModule } from './rest'
 
 (function() {
-    var basic_choropleth = new Datamap({
+    let basic_choropleth = new Datamap({
         element: document.getElementById("map-view"),
         projection: 'mercator',
         geographyConfig: {
@@ -13,23 +13,23 @@ import { RestModule } from './rest'
 })();
 
 (function() {
-    var listSubUnits = document.querySelectorAll('[class*="datamaps-subunit"]');
-    for (var i = 0; i < listSubUnits.length; i++) {
+    let listSubUnits = document.querySelectorAll('[class*="datamaps-subunit"]');
+    for (let i = 0; i < listSubUnits.length; i++) {
 
         listSubUnits[i].addEventListener('mousemove', function(e) {
             e.stopPropagation();
-            var countryCode = e.target.className.baseVal.split(" ")[1];
-            var restModule = new RestModule();
+            let countryCode = e.target.className.baseVal.split(" ")[1];
+            let restModule = new RestModule();
             restModule.rest('GET', 'https://restcountries.eu/rest/v1/alpha?codes=' + countryCode, null, (err, response) =>  {
-              var hoverinfo = document.getElementsByClassName('hoverinfo')[0];
+              let hoverinfo = document.getElementsByClassName('hoverinfo')[0];
 
               if (err) {
                 console.log('Error fetching data from rest countries!');
                 hoverinfo.innerHTML = '<strong>Oops...error fetching data from rest countries! </strong>';
               } else {
-                var parsedJSON = JSON.parse(response);
+                let parsedJSON = JSON.parse(response);
 
-                var jsonFetch = {
+                let jsonFetch = {
                   'name': restModule.getByKey(parsedJSON, 'name'),
                   'topLevelDomains': restModule.getByKey(parsedJSON, 'topLevelDomain'),
                   'callingCodes': restModule.getByKey(parsedJSON, 'callingCodes')
