@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 var config = {
     module: {
         loaders: [{
@@ -15,6 +17,11 @@ var mainConfig = Object.assign({}, config, {
         path: './assets/build/',
         filename: 'index-bundle.js'
     },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false }
+        })
+    ]
 });
 
 var countryConfig = Object.assign({}, config, {
@@ -24,6 +31,11 @@ var countryConfig = Object.assign({}, config, {
         path: './assets/build/',
         filename: 'country-bundle.js'
     },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false }
+        })
+    ]
 });
 
 // Return Array of Configurations

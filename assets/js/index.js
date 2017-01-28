@@ -40,13 +40,18 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
         e.preventDefault();
     }
 
+    // get the host name
+    let host = "http://" + window.location.hostname;
+    if (host.includes('local')) {
+        host += ':3000';
+    }
+    // get params
     let email = document.getElementById('inputEmail').value;
     let comment = document.getElementById('comment').value;
 
     let params = 'inputEmail=' + email + '&' + 'comment=' + comment;
-    console.log(params);
     let restModule = new RestModule();
-    restModule.rest('POST', '/mailme', params, (err, response) => {
+    restModule.rest('POST', host + '/mailme', params, (err, response) => {
         let el = document.getElementById('email-response-message');
         let contactForm = document.getElementById("contact-form");
         contactForm.reset();
