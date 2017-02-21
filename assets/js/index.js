@@ -45,11 +45,16 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
     if (host.includes('local')) {
         host += ':3000';
     }
+
+    console.log(host);
+
     // get params
     let email = document.getElementById('inputEmail').value;
     let comment = document.getElementById('comment').value;
 
-    let params = 'inputEmail=' + email + '&' + 'comment=' + comment;
+    //let params = 'inputEmail=' + email + '&' + 'comment=' + comment;
+    let params = { inputEmail: email, comment: comment };
+
     let restModule = new RestModule();
     restModule.rest('POST', host + '/mailme', params, (err, response) => {
         let el = document.getElementById('email-response-message');
@@ -57,6 +62,7 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
         contactForm.reset();
         if (err) {
             el.innerHTML = '<p><b>Oh no...something went wrong.</b></p>';
+            console.log(response);
         } else if (response.includes('Accepted')) { // hack: using 202 response code to say email was accepted but already exists in datastore
             el.innerHTML = '<p><b>Looks like you have already submitted your email!</b></p>';
         } else {

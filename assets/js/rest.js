@@ -1,10 +1,10 @@
-var RestModule = function() {
+var RestModule = function () {
 
     function rest(method, url, params, callback) {
 
         // Opening request
         let request = new XMLHttpRequest();
-        request.open(method, url);
+        request.open(method, url, true);
 
         if (method == 'POST') {
           request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -12,7 +12,6 @@ var RestModule = function() {
 
         // handling request onload
         request.onload = function onload() {
-            let json = {};
             if (request.status >= 200 && request.status < 400) {
                 // Success!
                 callback(null, request.responseText);
@@ -27,7 +26,9 @@ var RestModule = function() {
         };
 
         // sending request
-        request.send(params);
+        let newPayload = objToParams(params);
+        console.log('params in request: ' + newPayload);
+        request.send(newPayload);
     };
 
     function getByKey(json, key) {
@@ -56,4 +57,17 @@ var RestModule = function() {
     }
 };
 
-export { RestModule };
+function objToParams(obj) {
+    var paramString = '';
+    for (var key in obj) {
+        var value = obj[key];
+        if(obj[key] instanceof Array || obj[key] instanceof Object){
+            value = encodeURIComponent(JSON.stringify(value));
+        }
+        if (paramString != "") paramString += "&";
+        paramString += key + "=" + encodeURIComponent(value);
+    }
+    return paramString;
+}
+
+export {RestModule};
