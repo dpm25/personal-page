@@ -11,8 +11,8 @@
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <!--<link href="css/main.css" rel="stylesheet">-->
-    <link href="css/country.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/todo.css" rel="stylesheet">
     <link href="css/animate-custom.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
@@ -29,24 +29,33 @@
     <![endif]-->
 </head>
 
-    <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+<body data-spy="scroll" data-offset="0" data-target="#navbar-main">
 
+<% include nav %>
 
-        <% include nav %>
+<div id="todo-view" class="container">
+    <div class="row">w
+        <div class="col-lg-9 col-lg-offset-1">
+            <div class="input-group">
+                <input id="task" class="form-control" />
+                <span class="input-group-btn">
+                    <button id="add" class="btn btn-default" type="button">Add!</button>
+                </span>
+            </div><!-- /input-group -->
+            <div class="row">
+                <hr>
+                <div id="todos"></div>
+            </div>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div> <!-- /.container -->
 
-        <div id="map-view" class="container">
-        <!-- MAP will be placed here by datamaps.world.js -->
-        </div>
+<% include footer %>
 
-        <% include footer %>
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
-        <script src="datamaps.world.min.js"></script>
-        <script type="text/javascript" src="/build/country-bundle.js"></script>
-    </body>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="/build/todo-bundle.js"></script>
+</body>
 
 </html>

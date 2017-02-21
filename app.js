@@ -39,6 +39,12 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/todo', function (req, res) {
+    res.render('todo', {
+       nav: nav
+    });
+});
+
 // post an email to account
 app.post('/mailme', function(req, res) {
     // use mailUtil to send email and post data to dynamodb

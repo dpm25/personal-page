@@ -1,6 +1,6 @@
-var webpack = require('webpack');
+let webpack = require('webpack');
 
-var config = {
+let config = {
     module: {
         loaders: [{
             test: /\.js$/,
@@ -10,7 +10,7 @@ var config = {
     }
 };
 
-var mainConfig = Object.assign({}, config, {
+let mainConfig = Object.assign({}, config, {
     name: "index-bundle",
     entry: "./assets/js/index.js",
     output: {
@@ -24,7 +24,7 @@ var mainConfig = Object.assign({}, config, {
     ]
 });
 
-var countryConfig = Object.assign({}, config, {
+let countryConfig = Object.assign({}, config, {
     name: "country-bundle.js",
     entry: "./assets/js/country.js",
     output: {
@@ -38,7 +38,21 @@ var countryConfig = Object.assign({}, config, {
     ]
 });
 
+let todoConfig = Object.assign({}, config, {
+    name: "todo-bundle.js",
+    entry: "./assets/js/todo.js",
+    output: {
+        path: './assets/build/',
+        filename: 'todo-bundle.js'
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false }
+        })
+    ]
+})
+
 // Return Array of Configurations
 module.exports = [
-    mainConfig, countryConfig,
+    mainConfig, countryConfig, todoConfig
 ];
