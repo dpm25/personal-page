@@ -1,7 +1,7 @@
-var express = require('express');
-var countryRouter = express.Router();
+let express = require('express');
+let countryRouter = express.Router();
 
-var router = function(nav) {
+let router = function(nav) {
     countryRouter.route('/')
         .get(function(req, res) {
             res.render('country-widget', {

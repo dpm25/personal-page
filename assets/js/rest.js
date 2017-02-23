@@ -1,34 +1,46 @@
 var RestModule = function () {
 
-    function rest(method, url, params, callback) {
+    function get (url, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
 
-        // Opening request
-        let request = new XMLHttpRequest();
-        request.open(method, url, true);
-
-        if (method == 'POST') {
-          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        }
-
-        // handling request onload
-        request.onload = function onload() {
-            if (request.status >= 200 && request.status < 400) {
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
                 // Success!
-                callback(null, request.responseText);
+                callback(null, xhr.responseText);
             } else {
-              callback('Error occured reaching server', null);
+                callback('Error reaching server', null);
             }
         };
 
         // handling request on error
-        request.onerror = function() {
-          callback('Fatal error occured!', null);
+        xhr.onerror = function() {
+            callback('Fatal error occured!', null);
+        };
+
+        xhr.send(null);
+
+    };
+
+    function post (url, params, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        //Send the proper header information along with the request
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function() {//Call a function when the state changes.
+            if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                callback(null, xhr.responseText);
+            }
+        };
+
+        xhr.onerror = function () {
+            callback('Fatal error', null);
         };
 
         // sending request
-        let newPayload = objToParams(params);
-        console.log('params in request: ' + newPayload);
-        request.send(newPayload);
+        xhr.send(objToParams(params));
     };
 
     function getByKey(json, key) {
@@ -52,7 +64,8 @@ var RestModule = function () {
     }
 
     return {
-        rest: rest,
+        get: get,
+        post: post,
         getByKey: getByKey
     }
 };

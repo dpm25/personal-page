@@ -20,7 +20,7 @@ import { RestModule } from './rest'
             e.stopPropagation();
             let countryCode = e.target.className.baseVal.split(" ")[1];
             let restModule = new RestModule();
-            restModule.rest('GET', 'https://restcountries.eu/rest/v1/alpha?codes=' + countryCode, null, (err, response) =>  {
+            restModule.get('https://restcountries.eu/rest/v1/alpha?codes=' + countryCode, (err, response) =>  {
               let hoverinfo = document.getElementsByClassName('hoverinfo')[0];
 
               if (err) {

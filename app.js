@@ -1,25 +1,24 @@
-// import express module
 let express = require('express');
-// make express module global
-let app = module.exports = express();
-// body-parser
+let path = require('path');
+let favicon = require('serve-favicon');
+let app = express();
+let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-// mail util
 const mailUtil = require('./src/utils/mailUtil');
 
 // set the static lib
-app.use(express.static('assets'));
-app.use(express.static('node_modules/datamaps/dist/'));
+app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'node_modules/datamaps/dist/')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // set view engine and path to views
+app.set('views', path.join(__dirname, './src/views'));
 app.set('view engine', 'ejs');
-app.set('views', './src/views');
 
-var nav = [{
+let nav = [{
     "id": "about-nav",
     "href": "/#about",
     "title": "About"
@@ -29,9 +28,13 @@ var nav = [{
     "title": "Contact"
 }];
 
-// set up country wideget router for all requests to path /country-widget
-var countryRouter = require('./src/routes/countryRouter')(nav);
+// set up country router for all requests to path /country-widget
+let countryRouter = require('./src/routes/countryRouter')(nav);
 app.use('/country-widget', countryRouter);
+
+let todoRouter = require('./src/routes/todoRouter')(nav);
+app.use('/todo', todoRouter);
+
 
 app.get('/', function(req, res) {
     res.render('index', {
@@ -39,16 +42,10 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/todo', function (req, res) {
-    res.render('todo', {
-       nav: nav
-    });
-});
-
 // post an email to account
 app.post('/mailme', function(req, res) {
     // use mailUtil to send email and post data to dynamodb
-    mailUtil.mailme(req.body.inputEmail, req.body.comment, (err, response) => {
+    mailUtil.mailMe(req.body.inputEmail, req.body.comment, (err, response) => {
         if (err) {
             res.redirect(500, '/');
         } else if (response === 'EMAIL_EXISTS') {
@@ -65,3 +62,5 @@ let port = process.env.PORT || 3000;
 app.listen(port, function() {
     console.log('runnning server on port: ' + port);
 });
+
+module.exports = app;

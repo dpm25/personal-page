@@ -3,7 +3,7 @@ const DynamoStore = require('./dynamoStoreUtil');
 
 module.exports = {
     // export the anonymous mailme function
-    mailme: function(email, comment, callback) {
+    mailMe: function(email, comment, callback) {
         if (validate(email)) {
             DynamoStore.getItem('contacts', 'email', email, (err, data) => {
                 if (err) {

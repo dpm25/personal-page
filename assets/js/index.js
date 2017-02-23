@@ -41,22 +41,18 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
     }
 
     // get the host name
-    let host = "http://" + window.location.hostname;
-    if (host.includes('local')) {
-        host += ':3000';
-    }
-
-    console.log(host);
+    let host = "http://" + window.location.hostname + ':3000';
 
     // get params
     let email = document.getElementById('inputEmail').value;
     let comment = document.getElementById('comment').value;
 
-    //let params = 'inputEmail=' + email + '&' + 'comment=' + comment;
     let params = { inputEmail: email, comment: comment };
-
+    console.log(JSON.stringify(params));
+    console.log(host + '/mailme');
     let restModule = new RestModule();
-    restModule.rest('POST', host + '/mailme', params, (err, response) => {
+    restModule.post(host + '/mailme', params, (err, response) => {
+        console.log('inside callback for index')
         let el = document.getElementById('email-response-message');
         let contactForm = document.getElementById("contact-form");
         contactForm.reset();
@@ -70,4 +66,4 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
             el.innerHTML = '<p><b>Got it...Thanks for reaching out!</b></p>';
         }
     });
-});
+}, false);
